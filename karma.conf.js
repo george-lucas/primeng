@@ -14,13 +14,6 @@ module.exports = function (config) {
             }
         },
         coverageReporter: {
-            include: [
-                'src/**/*.(ts|js)',
-                '!src/main.(ts|js)',
-                '!src/**/*.spec.(ts|js)',
-                '!src/**/*.module.(ts|js)',
-                '!src/**/environment*.(ts|js)'
-            ],
             dir: require('path').join(__dirname, './coverage/ng11'),
             subdir: '.',
             reporters: [{ type: 'html' }, { type: 'text-summary' }]
