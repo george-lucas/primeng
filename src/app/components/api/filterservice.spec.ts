@@ -13,7 +13,7 @@ describe('FilterService', () => {
 
     it('deve retornar false se o valor for undefined ou null', () => {
       expect(startsWith(undefined, 'Jansen Gomes')).toBe(false)
-      expect(startsWith(undefined, 'Jansen Gomes')).toBe(false)
+      expect(startsWith(null, 'Jansen Gomes')).toBe(false)
     })
 
     it('deve retornar true se as strings começarem igual', () => {
@@ -37,7 +37,7 @@ describe('FilterService', () => {
 
     it('deve retornar false se o valor for undefined ou null', () => {
       expect(contains(undefined, 'Jansen Gomes')).toBe(false)
-      expect(contains(undefined, 'Jansen Gomes')).toBe(false)
+      expect(contains(null, 'Jansen Gomes')).toBe(false)
     })
 
     it('deve retornar true se a string de valor contém o filtro', () => {
@@ -61,7 +61,7 @@ describe('FilterService', () => {
 
     it('deve retornar false se o valor for undefined ou null', () => {
       expect(notContains(undefined, 'Jansen Gomes')).toBe(false)
-      expect(notContains(undefined, 'Jansen Gomes')).toBe(false)
+      expect(notContains(null, 'Jansen Gomes')).toBe(false)
     })
 
     it('deve retornar true se a string de valor não contém o filtro', () => {
@@ -85,7 +85,7 @@ describe('FilterService', () => {
 
     it('deve retornar false se o valor for undefined ou null', () => {
       expect(endsWith(undefined, 'Jansen Gomes')).toBe(false)
-      expect(endsWith(undefined, 'Jansen Gomes')).toBe(false)
+      expect(endsWith(null, 'Jansen Gomes')).toBe(false)
     })
 
     it('deve retornar true se o valor termina com o filtro', () => {
@@ -109,7 +109,7 @@ describe('FilterService', () => {
 
     it('deve retornar false se o valor for undefined ou null', () => {
       expect(equals(undefined, 'Jansen Gomes')).toBe(false)
-      expect(equals(undefined, 'Jansen Gomes')).toBe(false)
+      expect(equals(null, 'Jansen Gomes')).toBe(false)
     })
 
     it('deve retornar true se o valor é igual ao filtro', () => {
@@ -133,7 +133,7 @@ describe('FilterService', () => {
 
     it('deve retornar true se o valor for undefined ou null', () => {
       expect(notEquals(undefined, 'Jansen Gomes')).toBe(true)
-      expect(notEquals(undefined, 'Jansen Gomes')).toBe(true)
+      expect(notEquals(null, 'Jansen Gomes')).toBe(true)
     })
 
     it('deve retornar true se o valor é diferente filtro', () => {
