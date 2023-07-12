@@ -1,4 +1,5 @@
 import { start } from 'repl';
+import { concatAll } from 'rxjs';
 import { FilterService } from './filterservice';
 
 describe('FilterService', () => {
@@ -99,12 +100,29 @@ describe('FilterService', () => {
             expect(notContains(null, 'Jansen Gomes')).toBe(false);
         });
 
+        // Teste novo
+        it('deve retornar true se ambos o valor e o filtro forem falsy', () => {
+            expect(notContains(undefined, undefined)).toBe(true);
+            expect(notContains(null, null)).toBe(true);
+            expect(notContains('', '')).toBe(true);
+        });
+
         it('deve retornar true se a string de valor não contém o filtro', () => {
             expect(notContains('Leandro Lo', 'Leo')).toBe(true);
         });
 
         it('deve retornar false se a string de valor contém o filtro', () => {
             expect(notContains('Leandro Lo', 'Lo')).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar false se a string de valor é igual ao filtro', () => {
+            expect(notContains('Leandro Lo', 'Leandro Lo'));
+        });
+
+        // Teste novo
+        it('deve retornar true se a string de valor é uma substring da string de filtro', () => {
+            expect(notContains('Leandro Lo', '[RIP] Leandro Lo'));
         });
     });
 
@@ -123,12 +141,28 @@ describe('FilterService', () => {
             expect(endsWith(null, 'Jansen Gomes')).toBe(false);
         });
 
+        it('deve retornar false se ambos os valores e o filtro forem falsy', () => {
+            expect(endsWith('', '')).toBe(true);
+            expect(endsWith(null, null)).toBe(true);
+            expect(endsWith(undefined, undefined)).toBe(true);
+        });
+
         it('deve retornar true se o valor termina com o filtro', () => {
             expect(endsWith('Leandro Lo', 'Lo')).toBe(true);
         });
 
         it('deve retornar false se o valor não termina com o filtro', () => {
             expect(endsWith('Leandro Lo', 'Leandro')).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar true se o valor é igual ao filtro', () => {
+            expect(endsWith('Leandro Lo', 'Leandro Lo')).toBe(true);
+        });
+
+        // Teste novo
+        it('deve retornar false se o valor é uma substring do filtro', () => {
+            expect(endsWith('Leandro', 'Leandro Lo'));
         });
     });
 
