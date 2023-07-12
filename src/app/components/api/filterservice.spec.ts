@@ -232,6 +232,13 @@ describe('FilterService', () => {
             expect(notEquals('Leandro Lo', ' ')).toBe(false);
         });
 
+        // Teste novo
+        it('deve retornar false se ambos o valor e o filtro forem falsy', () => {
+          expect(notEquals(undefined, undefined)).toBe(false);
+          expect(notEquals(undefined, null)).toBe(false);
+          expect(notEquals('', '')).toBe(false);
+        });
+
         it('deve retornar true se o valor for undefined ou null', () => {
             expect(notEquals(undefined, 'Jansen Gomes')).toBe(true);
             expect(notEquals(null, 'Jansen Gomes')).toBe(true);
@@ -243,6 +250,31 @@ describe('FilterService', () => {
 
         it('deve retornar false se o valor é igual ao filtro', () => {
             expect(notEquals('Leandro Lo', 'Leandro Lo')).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar false se são valores numéricos iguais', () => {
+            expect(notEquals(42, 42)).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar true se são valores numéricos diferentes', () => {
+            expect(notEquals(42, 0)).toBe(true);
+        });
+
+        // Teste novo
+        it('deve retornar false se são datas iguais', () => {
+            const date = new Date();
+            expect(notEquals(date, date)).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar true se são datas diferentes', () => {
+            const d1 = new Date();
+            const d2 = new Date();
+            d2.setHours(d1.getHours() - 1);
+
+            expect(notEquals(d1, d2)).toBe(true);
         });
     });
 
@@ -273,6 +305,27 @@ describe('FilterService', () => {
             const value = null;
             const filter = [1, 10];
             expect(between(value, filter)).toBe(false);
+        });
+        // Teste novo
+        it('deve retornar true caso os valores forem valores falsy', () => {
+          expect(between(null, null)).toBe(true);
+          expect(between(undefined, undefined)).toBe(true);
+          expect(between('', '')).toBe(true);
+        });
+        
+        // Teste novo
+        it('deve retornar true se a data está no intervalo do filtro', () => {
+          const value = new Date('2023-01-15');
+          const filter = [new Date('2023-01-01'), new Date('2023-01-31')];
+
+          expect(between(value, filter)).toBe(true);
+        });
+        // Teste novo
+        it('deve retornar false se a data não está no intervalo do filtro', () => {
+          const value = new Date('2023-02-15');
+          const filter = [new Date('2023-01-01'), new Date('2023-01-31')];
+
+          expect(between(value, filter)).toBe(false);
         });
     });
 
@@ -319,6 +372,12 @@ describe('FilterService', () => {
             const filter = new Date('2023-06-15');
             expect(gte(value, filter)).toBe(false);
         });
+        // Teste novo
+        it('deve retornar true se ambos o filtro e o valor forem valores falsy', () => {
+          expect(gte(null, null)).toBe(true);
+          expect(gte(undefined, undefined)).toBe(true);
+          expect(gte('', '')).toBe(true);
+        });
     });
 
     describe('dateIs()', () => {
@@ -353,6 +412,11 @@ describe('FilterService', () => {
             const value = new Date('2023-06-17');
             const filter = new Date('2023-06-18');
             expect(dateIs(value, filter)).toBe(false);
+        });
+        // Teste novo
+        it('deve retornar true se ambos o filtro e o valor forem valores falsy', () => {
+          expect(dateIs(null, null)).toBe(true);
+          expect(dateIs(undefined, undefined)).toBe(true);
         });
     });
 
@@ -393,6 +457,11 @@ describe('FilterService', () => {
             const value = new Date('2023-06-18');
             const filter = new Date('2023-06-18');
             expect(dateAfter(value, filter)).toBe(false);
+        });
+        // Teste novo
+        it('deve retornar true se ambos o filtro e o valor forem valores falsy', () => {
+          expect(dateAfter(null, null)).toBe(true);
+          expect(dateAfter(undefined, undefined)).toBe(true);
         });
     });
 });
