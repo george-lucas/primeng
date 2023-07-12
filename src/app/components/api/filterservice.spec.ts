@@ -181,12 +181,44 @@ describe('FilterService', () => {
             expect(equals(null, 'Jansen Gomes')).toBe(false);
         });
 
+        // Teste novo
+        it('deve retornar true se ambos o valor e o filtro forem falsy', () => {
+            expect(equals(undefined, undefined)).toBe(true);
+            expect(equals(undefined, null)).toBe(true);
+            expect(equals('', '')).toBe(true);
+        });
+
         it('deve retornar true se o valor é igual ao filtro', () => {
             expect(equals('Leandro Lo', 'Leandro Lo')).toBe(true);
         });
 
         it('deve retornar false se o valor não é igual ao filtro', () => {
             expect(equals('Leandro Lo', 'Leandro')).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar true se são valores numéricos iguais', () => {
+            expect(equals(42, 42)).toBe(true);
+        });
+
+        // Teste novo
+        it('deve retornar false se são valores numéricos diferentes', () => {
+            expect(equals(42, 0)).toBe(false);
+        });
+
+        // Teste novo
+        it('deve retornar true se são datas iguais', () => {
+            const date = new Date();
+            expect(equals(date, date)).toBe(true);
+        });
+
+        // Teste novo
+        it('deve retornar false se são datas diferentes', () => {
+            const d1 = new Date();
+            const d2 = new Date();
+            d2.setHours(d1.getHours() - 1);
+
+            expect(equals(d1, d2)).toBe(false);
         });
     });
 
