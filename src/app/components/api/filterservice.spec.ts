@@ -1,3 +1,4 @@
+import { start } from 'repl';
 import { FilterService } from './filterservice';
 
 describe('FilterService', () => {
@@ -22,6 +23,14 @@ describe('FilterService', () => {
 
     it('deve retornar false se as strings não começarem igual', () => {
       expect(startsWith('Fabrício Andrey', 'Diogo')).toBe(false)
+    })
+
+    it('deve retornar false se as strings começam igual mas o filtro é maior que a string em questão', () => {
+        expect(startsWith('Mica', 'Mica Galvão')).toBe(false)
+    })
+
+    it('deve retornar true se as strings são iguais', () => {
+        expect(startsWith('Mica', 'Mica')).toBe(true)
     })
   });
 
